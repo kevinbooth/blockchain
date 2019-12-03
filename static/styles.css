@@ -92,6 +92,13 @@ button:hover {
     margin-bottom: 2%;
 }
 
+@media screen and (max-width: 37.5em) {
+    .block {
+        width: 98%;
+        margin-bottom: 10%;
+    }
+}
+
 .attribute {
     margin-bottom: 1rem;
     word-wrap: break-word;
