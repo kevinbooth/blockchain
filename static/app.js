@@ -103,22 +103,22 @@ UNH.renderBlocks = function () {
 
     UNH.chain.chain.forEach(function(block, index) {
         output += '<div class="block">';
-        output += '    <div>Block ' + index + '</div>';
+        output += '    <div class="attribute">Block ' + index + '</div>';
         output += '    <div>Timestamp:</div>';
-        output += '    <div class="ui-data attribute">' + block.timestamp + '</div>';
+        output += '    <div class="attribute">' + block.timestamp + '</div>';
         output += '    <div>Data:</div>';
         if (index === 0) {
-            output += '    <div class="ui-data attribute">No data (Genesis block)</div>';
+            output += '    <div class="attribute">No data (Genesis block)</div>';
         } else {
-            output += '    <div class="ui-data attribute">' + block.transactions[0].fromAddress.substring(0,6) 
+            output += '    <div class="attribute">' + block.transactions[0].fromAddress.substring(0,6) 
                         + ' gave ' + block.transactions[0].toAddress.substring(0,6) + ' ' 
                         + block.transactions[0].amount + ' coins'
                         + '</div>';
         }
         output += '    <div>Hash:</div>';
-        output += '    <div class="ui-hash attribute">' + block.hash + '</div>';
+        output += '    <div class="attribute">' + block.hash + '</div>';
         output += '    <div>Previous Hash:</div>';
-        output += '    <div class="ui-previous attribute">' + block.previousHash + '</div>';
+        output += '    <div class="attribute">' + block.previousHash + '</div>';
         output += '</div>';
     });
 
