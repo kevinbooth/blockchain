@@ -87,6 +87,10 @@ UNH.addTransaction = function () {
     tx.signTransaction(UNH.key);
 
     UNH.chain.addTransaction(tx);
+
+    UNH.chain.minePendingTransactions(UNH.key.getPublic('hex'));
+
+    console.log(UNH.chain);
 };
 
 /**
