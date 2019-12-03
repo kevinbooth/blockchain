@@ -35,6 +35,7 @@ body {
     display: block;
     word-wrap: break-word;
     margin-bottom: 1rem;
+    max-width: 45rem;
 }
 
 input, button {
