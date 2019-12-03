@@ -50,7 +50,7 @@ UNH.init = function () {
 };
 
 /**
- * Fires off all functions on page load
+ * Generates a key for the to address
  * @function
  */
 UNH.generateToKey = function () {
@@ -60,7 +60,7 @@ UNH.generateToKey = function () {
 };
 
 /**
- * Fires off all functions on page load
+ * Sets up blockchain and generates key pair
  * @function
  */
 UNH.setup = function () {
@@ -78,14 +78,14 @@ UNH.setup = function () {
 };
 
 /**
- * Fires off all functions on page load
+ * Adds a transaction to blockchain and mines it
  * @function
  */
 UNH.addTransaction = function () {
-    const toAddr = document.getElementsByClassName('ui-to-addr')[0];
-    const amount = parseInt(document.getElementsByClassName('ui-amount')[0]);
+    const toAddr = document.getElementsByClassName('ui-to-addr')[0].value;
+    const amount = parseInt(document.getElementsByClassName('ui-amount')[0].value);
 
-    const tx = new Transaction(UNH.key.getPublic('hex'), toAddr.value, amount);
+    const tx = new Transaction(UNH.key.getPublic('hex'), toAddr, amount);
     tx.signTransaction(UNH.key);
 
     UNH.chain.addTransaction(tx);
@@ -98,7 +98,7 @@ UNH.addTransaction = function () {
 };
 
 /**
- * Fires off all functions on page load
+ * Renders blocks on the frontend
  * @function
  */
 UNH.renderBlocks = function () {
@@ -109,15 +109,16 @@ UNH.renderBlocks = function () {
 
     UNH.chain.chain.forEach(function(block, index) {
         output += '<div class="block">';
+        output += '    <div>Block ' + index + '</div>';
         output += '    <div>Timestamp:</div>';
         output += '    <div class="ui-data attribute">' + block.timestamp + '</div>';
         output += '    <div>Data:</div>';
         if (index === 0) {
             output += '    <div class="ui-data attribute">No data (Genesis block)</div>';
         } else {
-            output += '    <div class="ui-data attribute">' + block.transactions[0].fromAddress.substring(0,5) 
-                        + ' gave ' + block.transactions[0].toAddress.substring(0,5) + ' ' 
-                        + block.transactions[1].amount + ' coins'
+            output += '    <div class="ui-data attribute">' + block.transactions[0].fromAddress.substring(0,6) 
+                        + ' gave ' + block.transactions[0].toAddress.substring(0,6) + ' ' 
+                        + block.transactions[0].amount + ' coins'
                         + '</div>';
         }
         output += '    <div>Hash:</div>';

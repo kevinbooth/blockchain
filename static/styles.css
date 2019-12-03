@@ -73,7 +73,7 @@ button:hover {
 
 /* Blockchain */
 .chain {
-    display flex;
+    display: flex;
     flex-wrap: wrap;
 }
 
