@@ -73,6 +73,8 @@ UNH.setup = function () {
 
     UNH.chain = new Blockchain();
     console.log(UNH.chain);
+
+    UNH.renderBlocks();
 };
 
 /**
@@ -83,7 +85,7 @@ UNH.addTransaction = function () {
     const toAddr = document.getElementsByClassName('ui-to-addr')[0];
     const amount = parseInt(document.getElementsByClassName('ui-amount')[0]);
 
-    const tx = new Transaction(UNH.key.getPublic('hex'), toAddr, amount);
+    const tx = new Transaction(UNH.key.getPublic('hex'), toAddr.value, amount);
     tx.signTransaction(UNH.key);
 
     UNH.chain.addTransaction(tx);
@@ -91,14 +93,41 @@ UNH.addTransaction = function () {
     UNH.chain.minePendingTransactions(UNH.key.getPublic('hex'));
 
     console.log(UNH.chain);
+
+    UNH.renderBlocks();
 };
 
 /**
  * Fires off all functions on page load
  * @function
  */
-UNH.createBlock = function () {
-    
+UNH.renderBlocks = function () {
+    const chainContainer = document.getElementsByClassName('ui-chain')[0];
+    let output = '';
+
+    chainContainer.innerHTML = '';
+
+    UNH.chain.chain.forEach(function(block, index) {
+        output += '<div class="block">';
+        output += '    <div>Timestamp:</div>';
+        output += '    <div class="ui-data attribute">' + block.timestamp + '</div>';
+        output += '    <div>Data:</div>';
+        if (index === 0) {
+            output += '    <div class="ui-data attribute"></div>';
+        } else {
+            output += '    <div class="ui-data attribute">' + block.transactions[0].fromAddress.substring(0,5) 
+                        + ' gave ' + block.transactions[0].toAddress.substring(0,5) + ' ' 
+                        + block.transactions[1].amount + ' coins'
+                        + '</div>';
+        }
+        output += '    <div>Hash:</div>';
+        output += '    <div class="ui-hash attribute">' + block.hash + '</div>';
+        output += '    <div>Previous Hash:</div>';
+        output += '    <div class="ui-previous attribute">' + block.previousHash + '</div>';
+        output += '</div>';
+    });
+
+    chainContainer.innerHTML = output;
 };
 
 /**

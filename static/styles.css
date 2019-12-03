@@ -85,4 +85,5 @@ button:hover {
 
 .attribute {
     margin-bottom: 1rem;
+    word-wrap: break-word;
 }
