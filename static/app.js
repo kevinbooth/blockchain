@@ -113,7 +113,7 @@ UNH.renderBlocks = function () {
         output += '    <div class="ui-data attribute">' + block.timestamp + '</div>';
         output += '    <div>Data:</div>';
         if (index === 0) {
-            output += '    <div class="ui-data attribute"></div>';
+            output += '    <div class="ui-data attribute">No data (Genesis block)</div>';
         } else {
             output += '    <div class="ui-data attribute">' + block.transactions[0].fromAddress.substring(0,5) 
                         + ' gave ' + block.transactions[0].toAddress.substring(0,5) + ' ' 

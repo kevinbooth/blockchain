@@ -72,6 +72,11 @@ button:hover {
 
 
 /* Blockchain */
+.chain {
+    display flex;
+    flex-wrap: wrap;
+}
+
 .block {
     background-color: #333333;
     box-sizing: border-box;
