@@ -67,12 +67,8 @@ UNH.setup = function () {
     const fromAddr = document.getElementsByClassName('ui-from-addr')[0];
 
     UNH.key = ec.genKeyPair();
-    console.log('Public key:', UNH.key.getPublic('hex'));
-    console.log('Private key:', UNH.key.getPrivate('hex'));
     fromAddr.innerHTML = UNH.key.getPublic('hex');
-
     UNH.chain = new Blockchain();
-    console.log(UNH.chain);
 
     UNH.renderBlocks();
 };
@@ -91,8 +87,6 @@ UNH.addTransaction = function () {
     UNH.chain.addTransaction(tx);
 
     UNH.chain.minePendingTransactions(UNH.key.getPublic('hex'));
-
-    console.log(UNH.chain);
 
     UNH.renderBlocks();
 };
